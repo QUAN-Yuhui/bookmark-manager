@@ -1,10 +1,10 @@
-# Bookmark Manager Chrome Extension
+# Bookmark Manager Chrome/Edge Extension
 
-A simple Chrome extension to view, sort, and bulk-delete your bookmarks.
+A simple Chrome/Edge extension to view, sort, and bulk-delete your bookmarks.
 
 ## Why this extension?
 
-Chrome's built-in bookmark manager lacks a way to:
+Chrome/Edge's built-in bookmark manager lacks a way to:
 - View all bookmarks in the order they were added
 - Sort bookmarks chronologically or in reverse
 - Select multiple bookmarks for deletion at once
@@ -21,12 +21,12 @@ This extension fills that gap with a lightweight, privacy-respecting interface.
 ## How to use
 
 1. Load the extension:
-   - Open `chrome://extensions/`
+   - Open `chrome://extensions/` for Chrome or `edge://extensions/` for Edge.
    - Enable **Developer mode**
    - Click **Load unpacked**
    - Select this extension folder
 
-2. Click the extension icon in Chrome’s toolbar
+2. Click the extension icon in the browser's toolbar
 
 3. Use the dropdown to sort bookmarks in chronological order or the reverse order.
 
