@@ -26,14 +26,23 @@ function renderBookmarks(bookmarks, order = 'asc') {
     else return b.dateAdded - a.dateAdded;
   });
 
-  for (const bookmark of bookmarks) {
-    const label = document.createElement('label');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.value = bookmark.id;
-    label.appendChild(checkbox);
-    label.append(` ${bookmark.title || bookmark.url}`);
-    container.appendChild(label);
+for (const bookmark of bookmarks) {
+  const label = document.createElement('label');
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.value = bookmark.id;
+
+  const link = document.createElement('a');
+  link.href = bookmark.url;
+  link.target = '_blank';
+  link.textContent = bookmark.title || bookmark.url;
+  link.style.marginLeft = '5px';
+  link.style.textDecoration = 'none';
+  link.style.color = 'blue';
+
+  label.appendChild(checkbox);
+  label.appendChild(link);
+  container.appendChild(label);
   }
 }
 
