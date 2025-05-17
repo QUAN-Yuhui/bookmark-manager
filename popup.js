@@ -3,12 +3,8 @@ function getAllBookmarks(callback) {
     const allBookmarks = [];
     function traverse(nodes) {
       for (const node of nodes) {
-        if (node.url) {
-          allBookmarks.push(node);
-        }
-        if (node.children) {
-          traverse(node.children);
-        }
+        if (node.url) allBookmarks.push(node);
+        if (node.children) traverse(node.children);
       }
     }
     traverse(bookmarkTreeNodes);
@@ -20,30 +16,36 @@ function renderBookmarks(bookmarks, order = 'asc') {
   const container = document.getElementById('bookmarkList');
   container.innerHTML = '';
 
-  // Sort by dateAdded
   bookmarks.sort((a, b) => {
-    if (order === 'asc') return a.dateAdded - b.dateAdded;
-    else return b.dateAdded - a.dateAdded;
+    return order === 'asc' ? a.dateAdded - b.dateAdded : b.dateAdded - a.dateAdded;
   });
 
-for (const bookmark of bookmarks) {
-  const label = document.createElement('label');
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.value = bookmark.id;
+  for (const bookmark of bookmarks) {
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = bookmark.id;
+    checkbox.addEventListener('change', updateSelectedCount);
 
-  const link = document.createElement('a');
-  link.href = bookmark.url;
-  link.target = '_blank';
-  link.textContent = bookmark.title || bookmark.url;
-  link.style.marginLeft = '5px';
-  link.style.textDecoration = 'none';
-  link.style.color = 'blue';
+    const link = document.createElement('a');
+    link.href = bookmark.url;
+    link.target = '_blank';
+    link.textContent = bookmark.title || bookmark.url;
+    link.style.marginLeft = '5px';
+    link.style.textDecoration = 'none';
+    link.style.color = 'blue';
 
-  label.appendChild(checkbox);
-  label.appendChild(link);
-  container.appendChild(label);
+    label.appendChild(checkbox);
+    label.appendChild(link);
+    container.appendChild(label);
   }
+
+  updateSelectedCount();
+}
+
+function updateSelectedCount() {
+  const count = document.querySelectorAll('#bookmarkList input[type="checkbox"]:checked').length;
+  document.getElementById('selectedCount').textContent = `Selected: ${count}`;
 }
 
 document.getElementById('refresh').addEventListener('click', () => {
@@ -53,12 +55,15 @@ document.getElementById('refresh').addEventListener('click', () => {
 
 document.getElementById('delete').addEventListener('click', () => {
   const checkboxes = document.querySelectorAll('#bookmarkList input[type="checkbox"]:checked');
-  checkboxes.forEach(cb => {
-    chrome.bookmarks.remove(cb.value);
-  });
+  const idsToDelete = Array.from(checkboxes).map(cb => cb.value);
+
+  idsToDelete.forEach(id => chrome.bookmarks.remove(id));
+
+  document.getElementById('status').textContent = 'Deleted';
   setTimeout(() => {
+    document.getElementById('status').textContent = '';
     document.getElementById('refresh').click();
-  }, 200); // Wait for deletions to complete
+  }, 1000);
 });
 
 // Initial load
