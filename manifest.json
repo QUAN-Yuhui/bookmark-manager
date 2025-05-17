@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Manager",
+  "version": "1.0",
+  "description": "List and delete Chrome bookmarks",
+  "permissions": ["bookmarks"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Bookmark Manager"
+  }
+}
