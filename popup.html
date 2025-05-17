@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookmark Manager</title>
+  <style>
+    body { font-family: Arial; margin: 10px; }
+    label { display: block; margin: 5px 0; }
+    #controls { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h2>Bookmarks</h2>
+  <div id="controls">
+    <label>
+      Sort:
+      <select id="sortOrder">
+        <option value="asc">Chronological</option>
+        <option value="desc">Reverse</option>
+      </select>
+    </label>
+    <button id="refresh">Refresh</button>
+    <button id="delete">Delete Selected</button>
+  </div>
+  <form id="bookmarkList"></form>
+  <script src="popup.js"></script>
+</body>
+</html>
