@@ -45,7 +45,7 @@ function renderBookmarks(bookmarks, order = 'asc') {
 
 function updateSelectedCount() {
   const count = document.querySelectorAll('#bookmarkList input[type="checkbox"]:checked').length;
-  document.getElementById('selectedCount').textContent = `Selected: ${count}`;
+  document.getElementById('delete').textContent = `Delete Selected (${count})`;
 }
 
 document.getElementById('sortOrder').addEventListener('change', () => {
