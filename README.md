@@ -28,7 +28,7 @@ This extension fills that gap with a lightweight, privacy-respecting interface.
 
 2. Click the extension icon in Chrome’s toolbar
 
-3. Use the dropdown to sort bookmarks then click **refresh** to make it effective
+3. Use the dropdown to sort bookmarks in chronological order or the reverse order.
 
 4. Select bookmarks using the checkboxes
 

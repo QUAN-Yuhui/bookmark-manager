@@ -48,7 +48,7 @@ function updateSelectedCount() {
   document.getElementById('selectedCount').textContent = `Selected: ${count}`;
 }
 
-document.getElementById('refresh').addEventListener('click', () => {
+document.getElementById('sortOrder').addEventListener('change', () => {
   const order = document.getElementById('sortOrder').value;
   getAllBookmarks((bookmarks) => renderBookmarks(bookmarks, order));
 });
@@ -62,11 +62,10 @@ document.getElementById('delete').addEventListener('click', () => {
   document.getElementById('status').textContent = 'Deleted';
   setTimeout(() => {
     document.getElementById('status').textContent = '';
-    document.getElementById('refresh').click();
+    document.getElementById('sortOrder').dispatchEvent(new Event('change'));
   }, 1000);
 });
 
-// Initial load
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('refresh').click();
+  document.getElementById('sortOrder').dispatchEvent(new Event('change'));
 });
